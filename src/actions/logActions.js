@@ -15,7 +15,7 @@ import {
 //     }
 // }
 
-export const getLlogs = async dispatch =>{
+export const getLogs = ()=> async dispatch =>{
     try {
         setLoading();
         const res = await fetch('/logs');
