@@ -17,11 +17,6 @@
   ],
   "techs": [
     {
-      "id": 1,
-      "firstName": "John",
-      "lastName": "Doe"
-    },
-    {
       "id": 2,
       "firstName": "Sam",
       "lastName": "Smith"
@@ -32,19 +27,9 @@
       "lastName": "Wilson"
     },
     {
-      "firstname": "shakir",
-      "lastname": "op",
-      "id": 4
-    },
-    {
       "firstName": "shakir",
       "lastName": "op",
       "id": 5
-    },
-    {
-      "firstName": "suhaila",
-      "lastName": "po",
-      "id": 6
     }
   ]
 }
