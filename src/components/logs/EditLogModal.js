@@ -1,15 +1,39 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import M from "materialize-css/dist/js/materialize.min.js";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import { updateLog, clearCurrent } from "../../actions/logActions";
 
-const EditLogModal = () => {
+const EditLogModal = ({ current, updateLog, clearCurrent }) => {
   const [message, setMessage] = useState("");
   const [attention, setAttention] = useState(false);
   const [tech, setTech] = useState("");
+
+  useEffect(() => {
+    if (current) {
+      setMessage(current.message);
+      setTech(current.tech);
+      setAttention(current.attention);
+    }
+    //eslint-disable-next-line
+  }, [current]);
 
   const onSubmit = () => {
     if (message === "" || tech === "") {
       M.toast({ html: "Please enter message and tech" });
     } else {
+      const updatedLog = {
+        id: current.id,
+        message,
+        tech,
+        attention,
+        date: new Date(),
+      };
+      updateLog(updatedLog);
+      M.toast({ html: "Log updated" });
+
+      clearCurrent();
+
       //clear fields
       setMessage("");
       setAttention(false);
@@ -29,7 +53,7 @@ const EditLogModal = () => {
               value={message}
               onChange={(e) => setMessage(e.target.value)}
             />
-            <label htmlFor='message' className='active'>
+            <label htmlFor='message' className={!current ? "active" : ""}>
               Log Message
             </label>
           </div>
@@ -86,4 +110,16 @@ const modalStyle = {
   height: "75%",
 };
 
-export default EditLogModal;
+EditLogModal.propTypes = {
+  current: PropTypes.object,
+  updateLog: PropTypes.func.isRequired,
+  clearCurrent: PropTypes.func.isRequired,
+};
+
+const maptStateToProps = (state) => ({
+  current: state.log.current,
+});
+
+export default connect(maptStateToProps, { updateLog, clearCurrent })(
+  EditLogModal
+);

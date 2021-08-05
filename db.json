@@ -1,11 +1,18 @@
 {
   "logs": [
     {
+      "id": 1,
       "message": "Changed network card in server 007",
-      "attention": false,
-      "tech": "Sam Smith",
-      "date": "2019-05-31T15:46:10.179Z",
-      "id": 1
+      "tech": "John Doe",
+      "attention": true,
+      "date": "2021-08-05T06:51:08.554Z"
+    },
+    {
+      "message": "system 43 hard disk changed",
+      "attention": true,
+      "tech": "Lilly Sha",
+      "date": "2021-08-05T05:59:42.207Z",
+      "id": 2
     }
   ],
   "techs": [
